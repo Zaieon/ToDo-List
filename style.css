@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: azure;
+    font-family: 'Poppins', sans-serif;
+}
+.container {
+    width: 500px;
+    height: 100vh;
+    background-color: whitesmoke;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    margin: 10px auto;
+}
+.container h2 {
+    font-size: x-large;
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+}
+.container .input-var {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin: 10px auto;
+}
+.input-var .add-btn {
+    margin-top: 1.9rem;
+    padding: 6px 20px;
+    font-size: large;
+    border-color: rgb(197, 223, 223);
+    border-radius: 1rem;
+    outline-color: azure;
+    background-color: azure;
+    transition: all .5s;
+}
+.input-var .add-btn:hover {
+    cursor: pointer;
+    background-color: aquamarine;
+}
+.input-var #todo {
+    padding: 5px 10px;
+    margin-top: 5px;
+    margin-left: -.5rem;
+    width: 18rem;
+    border: solid 2px rgb(197, 223, 223);
+    outline-color: azure;
+    background-color: whitesmoke;
+    font-size: large;
+}
+.to-do label {
+    font-size: large;
+    font-weight: 800;
+}
+
+/* LIST ITEM */
+
+.todo-list-container {
+
+    width: 26rem;
+    margin: 4rem auto;
+}
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+
+.list-item .part-one {
+    display: flex;
+}
+.list-item .delete {
+    margin-top: .2rem;
+    margin-right: .7rem;
+    padding: 0px 15px;
+    font-size: large;
+    border-color: rgb(197, 223, 223);
+    border-radius: 15px;
+    outline-color: azure;
+    background-color: azure;
+    transition: all .5s;
+}
+.list-item .delete:hover {
+    cursor: pointer;
+    background-color: aquamarine;
+}
+.list-item #checkbox {
+    margin-top: 1.2rem;
+    margin-right: 2rem;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
