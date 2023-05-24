@@ -7,10 +7,11 @@ body {
 }
 .container {
     width: 500px;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: whitesmoke;
     box-shadow: 0 0 5px rgba(0, 0, 0, .3);
     margin: 10px auto;
+    padding-bottom: 2rem;
 }
 .container h2 {
     font-size: x-large;
