@@ -6,7 +6,8 @@ let todoController = (function() {
     }
 
     let data = {
-        todos: []
+        todos: [],
+        points: 0
     }
 
     
@@ -53,7 +54,7 @@ let UIController = (function () {
         },
         addListItem: function (todoObj) {
             let action
-            action = `<div class="list-item" id = "item-${todoObj.id}"><div class="part-one"><button class="delete">Del</button><div class="item-text"> <p>${todoObj.activity}</p></div></div><div class="check"><input type="checkbox" name="checkbox" id="checkbox"></div></div>`
+            action = `<div class="list-item" id = "item-${todoObj.id}"><div class="part-one"><button class="delete">Del</button><div class="item-text"> <p>${todoObj.activity}</p></div></div><div class="check"><input type="checkbox" name="checkbox" class="checkbox" id="check-${todoObj.id}"></div></div>`
             console.log(action)
             setTimeout(() => {
                 document.querySelector(domStrings.todoListContainer).insertAdjacentHTML('beforeend', action)
@@ -72,7 +73,7 @@ let UIController = (function () {
     
 
 let controller = (function (tCtrl, UIctrl) {
-
+    let y
     let itemBtn = function () {
         document.querySelector('.add-btn').addEventListener('click', addTodo)
         document.querySelector('body').addEventListener('keypress', function (e) {
@@ -81,15 +82,63 @@ let controller = (function (tCtrl, UIctrl) {
             }
         })
         document.querySelector(UIctrl.domStrings.todoListContainer).addEventListener('click', function (e) {
-            let delItem, delItemArray
-            delItem = e.target.parentElement.parentElement.id
-            delItemArray = delItem.split('-')
-            delTodo(tCtrl, delItemArray, delItem)
-            console.log(delItemArray)
+            let delItem, delItemArray, checkItem, checkItemArray
+            console.log(e.target.tagName)
+            if (e.target.tagName === 'BUTTON') {
+                delItem = e.target.parentElement.parentElement.id
+                delItemArray = delItem.split('-')
+                delTodo(tCtrl, delItemArray, delItem)
+                console.log(delItemArray)
+            } else if (e.target.type === 'checkbox') {
+                checkItem = e.target.id
+                console.log(checkItem)
+                if (document.getElementById(e.target.id).checked) {
+                    checkItemArray = checkItem.split('-')
+                checkk(tCtrl, checkItemArray, y)
+                if (tCtrl.data.points < 50) {
+                    document.querySelector('.score').textContent = `Your plans are ${tCtrl.data.points.toFixed(2)}% complete!`
+                }
+                else {
+                    document.querySelector('.score').classList.add('win')
+                    document.querySelector('.score').textContent = `Your plans are ${tCtrl.data.points.toFixed(2)}% complete!`
+               
+                }
+                }
+                
+                
 
-          })
+                // let pp = document.querySelectorAll('.checkbox')
+                // pp.forEach((i, j, k) => {
+                //     i.addEventListener('click', function () {  
+                //          if (i.checked) {
+                //         y += 5
+                //         console.log(y)
+                //     }
+                //     })
+                   
+                // })
+                console.log('Please help')
+                // let pp = document.getElementById(e.target.id)
+                // pp.forEach()
+                // if (document.getElementById(e.target.id).checked) {
+                //     y += 5
+                //     console.log(y)
+                // }
+            }
+            
+
+        })
         
     }
+    let checkk = function (sarr, iarr, varr) { 
+        sarr.data.todos.forEach((i, j, k) => {
+            if (i.id === Number(iarr[1])) {
+                varr = 100 / sarr.data.todos.length
+                sarr.data.points += varr
+                console.log(sarr.data.points)
+            }
+        })
+     }
 
     let delTodo = function (sarr, iarr, iitem) {
         sarr.data.todos.forEach((i, j, k) => {

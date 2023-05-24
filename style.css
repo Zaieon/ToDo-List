@@ -13,11 +13,19 @@ body {
     margin: 10px auto;
     padding-bottom: 2rem;
 }
-.container h2 {
+.container .heading {
     font-size: x-large;
     text-align: center;
     margin-top: 2rem;
     padding-top: 2rem;
+}
+.container .score {
+    font-size: x-large;
+    text-align: center;
+}
+.container .win {
+    color: green;
+    transform: scale(1.1);
 }
 .container .input-var {
     display: flex;
@@ -59,7 +67,7 @@ body {
 .todo-list-container {
 
     width: 26rem;
-    margin: 4rem auto;
+    margin: 2rem auto;
 }
 .list-item {
     display: flex;
@@ -90,7 +98,7 @@ body {
     cursor: pointer;
     background-color: aquamarine;
 }
-.list-item #checkbox {
+.list-item .checkbox {
     margin-top: 1.2rem;
     margin-right: 2rem;
     cursor: pointer;
