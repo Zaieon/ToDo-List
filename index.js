@@ -23,7 +23,8 @@ let todoController = (function() {
             console.log(data.todos)
             return newTodo
             
-        }
+        },
+        data
     }
 
 
@@ -52,13 +53,16 @@ let UIController = (function () {
         },
         addListItem: function (todoObj) {
             let action
-            action = `<div class="list-item"><div class="part-one"><button class="delete">Del</button><p class="item-text">${todoObj.activity}</p></div><div class="check"><input type="checkbox" name="checkbox" id="checkbox"></div></div>`
-            
+            action = `<div class="list-item" id = "item-${todoObj.id}"><div class="part-one"><button class="delete">Del</button><div class="item-text"> <p>${todoObj.activity}</p></div></div><div class="check"><input type="checkbox" name="checkbox" id="checkbox"></div></div>`
+            console.log(action)
             setTimeout(() => {
                 document.querySelector(domStrings.todoListContainer).insertAdjacentHTML('beforeend', action)
             }, 150);
             
-          }
+        },
+        domStrings
+        
+        
 
 
     }
@@ -76,20 +80,39 @@ let controller = (function (tCtrl, UIctrl) {
                 addTodo()
             }
         })
+        document.querySelector(UIctrl.domStrings.todoListContainer).addEventListener('click', function (e) {
+            let delItem, delItemArray
+            delItem = e.target.parentElement.parentElement.id
+            delItemArray = delItem.split('-')
+            delTodo(tCtrl, delItemArray, delItem)
+            console.log(delItemArray)
+
+          })
+        
+    }
+
+    let delTodo = function (sarr, iarr, iitem) {
+        sarr.data.todos.forEach((i, j, k) => {
+            if (i.id === Number(iarr[1])) {
+                sarr.data.todos.splice(j, 1)
+                document.getElementById(iitem).remove()
+                console.log(sarr.data.todos)
+            }
+        })
     }
 
     let addTodo = function () {
         // Get todo values
-        let todoValue
+        let todoValue,todoObject
         todoValue = UIctrl.getTodo()
         // Clear Fields
         
         if (todoValue.activity != '') {
             console.log(UIctrl.getTodo())
         //store todo values as objects
-        tCtrl.addItem(todoValue.activity)
+        todoObject = tCtrl.addItem(todoValue.activity)
         // add todo values to list
-            UIctrl.addListItem(todoValue)
+            UIctrl.addListItem(todoObject)
             UIctrl.clearField()
         }
         

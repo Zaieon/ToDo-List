@@ -6,7 +6,7 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 .container {
-    width: 500px;
+    width: 35vw;
     /* height: 100vh; */
     background-color: whitesmoke;
     box-shadow: 0 0 5px rgba(0, 0, 0, .3);
@@ -69,6 +69,11 @@ body {
 
 .list-item .part-one {
     display: flex;
+}
+.item-text {
+    /* width: 18vw; */
+    /* overflow-x: scroll; */
+    /* color: red; */
 }
 .list-item .delete {
     margin-top: .2rem;
